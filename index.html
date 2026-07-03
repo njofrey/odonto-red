@@ -3,1304 +3,504 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VCS × OdontoRed — Propuesta 2026</title>
+    <title>Web OdontoRed — Opciones</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --white:   #F3E8D4;
-            --black:   #112028;
-            --green:   #164E63;
-            --green-l: #1E6B7E;
-            --red:     #C85C3A;
-            --yellow:  #C8962A;
-            --mid:     #5C6E78;
-            --rule:    rgba(17,32,40,0.12);
+            --bg:      #F8F7F4;
+            --white:   #FFFFFF;
+            --ink:     #111110;
+            --mid:     #6B6B68;
+            --rule:    rgba(17,17,16,0.1);
+            --accent:  #1D4ED8;
+            --green:   #15803D;
+            --warn:    #B45309;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            background: var(--white);
-            color: var(--black);
-            font-family: 'Syne', sans-serif;
-            font-weight: 400;
-            overflow-x: hidden;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ──────────────────────────
-           NAV BAR
-        ────────────────────────── */
-        .topbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            background: var(--white);
-            border-bottom: 1.5px solid var(--black);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 48px;
-            height: 52px;
+        /* ── HEADER ── */
+        .header {
+            border-bottom: 1px solid var(--rule);
+            padding: 32px 0;
         }
-        .topbar-brand {
-            font-size: 11px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: var(--black);
-        }
-        .topbar-meta {
-            font-size: 10px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--mid);
-        }
-        .topbar-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: var(--red);
-            display: inline-block;
-            margin-right: 8px;
-            vertical-align: middle;
-            opacity: 0.6;
-        }
-
-        /* ──────────────────────────
-           HERO
-        ────────────────────────── */
-        .hero {
-            min-height: 100vh;
-            padding-top: 52px;
-            display: grid;
-            grid-template-rows: 1fr auto;
-            border-bottom: 1.5px solid var(--black);
-        }
-
-        .hero-main {
-            display: grid;
-            grid-template-columns: 1fr 420px;
-        }
-
-        .hero-left {
-            padding: 72px 56px 80px;
-            border-right: 1.5px solid var(--black);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .hero-tag {
-            display: inline-block;
-            font-size: 10px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: var(--mid);
-            margin-bottom: 48px;
-        }
-
-        .hero-headline {
-            font-family: 'Fraunces', serif;
-            font-weight: 300;
-            font-style: italic;
-            font-size: clamp(52px, 6.5vw, 100px);
-            line-height: 0.97;
-            letter-spacing: -0.02em;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .hero-headline .line-accent {
-            color: var(--red);
-            font-style: normal;
-            font-weight: 600;
-            display: block;
-        }
-
-        .hero-footnote {
-            font-family: 'Fraunces', serif;
-            font-style: italic;
-            font-size: 14px;
-            color: var(--mid);
-            margin-top: 48px;
-            padding-top: 28px;
-            border-top: 1px solid var(--rule);
-            line-height: 1.6;
-        }
-
-        .hero-right {
-            background: var(--green);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 72px 48px 80px;
-        }
-
-        .hero-right-label {
-            font-size: 10px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: rgba(248,246,240,0.4);
-            margin-bottom: 40px;
-        }
-
-        .hero-stats {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 0;
-        }
-
-        .hstat {
-            padding: 28px 0;
-            border-bottom: 1px solid rgba(248,246,240,0.1);
-        }
-        .hstat:first-child { padding-top: 0; }
-        .hstat:last-child { border-bottom: none; }
-
-        .hstat-n {
-            font-family: 'Fraunces', serif;
-            font-weight: 300;
-            font-size: 64px;
-            line-height: 1;
-            color: var(--white);
-        }
-        .hstat-n .u { font-size: 28px; color: var(--yellow); }
-
-        .hstat-l {
-            font-size: 11px;
-            color: rgba(248,246,240,0.45);
-            margin-top: 6px;
-            line-height: 1.45;
-            letter-spacing: 0.01em;
-        }
-
-        .hero-right-footer {
-            font-size: 10px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: rgba(248,246,240,0.25);
-            padding-top: 28px;
-            border-top: 1px solid rgba(248,246,240,0.1);
-        }
-
-        /* ──────────────────────────
-           MARQUEE
-        ────────────────────────── */
-        .marquee-wrap {
-            overflow: hidden;
-            border-bottom: 1.5px solid var(--black);
-            background: var(--yellow);
-        }
-        .marquee-track {
-            display: flex;
-            white-space: nowrap;
-            animation: ticker 28s linear infinite;
-        }
-        .marquee-item {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--black);
-            padding: 14px 52px;
-            flex-shrink: 0;
-        }
-        .marquee-item::after {
-            content: '●';
-            margin-left: 52px;
-            font-size: 6px;
-            opacity: 0.4;
-            vertical-align: middle;
-        }
-        @keyframes ticker {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* ──────────────────────────
-           SHARED LAYOUT
-        ────────────────────────── */
-        .container {
-            max-width: 1200px;
+        .header-inner {
+            max-width: 960px;
             margin: 0 auto;
-            padding: 0 56px;
-        }
-
-        .section {
-            padding: 96px 0;
-            border-bottom: 1.5px solid var(--black);
-        }
-
-        .eyebrow {
-            font-size: 10px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: var(--mid);
-            margin-bottom: 52px;
+            padding: 0 40px;
             display: flex;
-            align-items: center;
-            gap: 16px;
+            justify-content: space-between;
+            align-items: baseline;
         }
-        .eyebrow::before {
-            content: '';
-            width: 24px;
-            height: 1.5px;
-            background: var(--red);
-            display: block;
-        }
-
-        /* ──────────────────────────
-           HISTORIA
-        ────────────────────────── */
-        .historia-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .historia-heading {
-            font-family: 'Fraunces', serif;
-            font-weight: 300;
-            font-size: clamp(32px, 3.8vw, 56px);
-            line-height: 1.1;
+        .header-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            font-weight: 400;
             letter-spacing: -0.01em;
         }
-        .historia-heading em {
-            font-style: italic;
-            color: var(--red);
-        }
-
-        .historia-body {
-            margin-top: 32px;
-        }
-        .historia-body p {
-            font-family: 'Fraunces', serif;
-            font-style: italic;
-            font-size: 16px;
-            line-height: 1.78;
+        .header-meta {
+            font-size: 12px;
             color: var(--mid);
-        }
-        .historia-body p + p { margin-top: 14px; }
-
-        .historia-right {
-            padding-left: 40px;
-            border-left: 1.5px solid var(--black);
+            text-align: right;
+            line-height: 1.7;
         }
 
-        .insight-item {
-            padding: 32px 0;
+        /* ── LAYOUT ── */
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        .block {
+            padding: 56px 0;
             border-bottom: 1px solid var(--rule);
         }
-        .insight-item:first-child { padding-top: 0; }
-        .insight-item:last-child { border-bottom: none; }
+        .block:last-child { border-bottom: none; }
 
-        .insight-n {
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            font-weight: 700;
-            color: var(--mid);
-            margin-bottom: 10px;
-        }
-        .insight-title {
-            font-family: 'Fraunces', serif;
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 1.25;
-            margin-bottom: 10px;
-        }
-        .insight-body {
-            font-size: 13px;
-            line-height: 1.7;
-            color: var(--mid);
-            font-family: 'Syne', sans-serif;
-            font-style: normal;
-        }
-
-        /* ──────────────────────────
-           VERDADES — DARK
-        ────────────────────────── */
-        .verdades-wrap {
-            background: var(--black);
-            color: var(--white);
-            border-bottom: 1.5px solid var(--black);
-        }
-
-        .verdades-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 56px;
-        }
-
-        .verdades-header {
-            padding: 64px 0 0;
-            display: flex;
-            align-items: baseline;
-            gap: 24px;
-            border-bottom: 1px solid rgba(248,246,240,0.1);
-            padding-bottom: 48px;
-        }
-        .verdades-header-title {
-            font-size: 10px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: rgba(248,246,240,0.35);
-        }
-        .verdades-header-tag {
-            font-family: 'Fraunces', serif;
-            font-style: italic;
-            font-size: 13px;
-            color: var(--yellow);
-        }
-
-        .verdad {
-            display: grid;
-            grid-template-columns: 120px 1fr 1fr;
-            gap: 48px;
-            padding: 64px 0;
-            border-bottom: 1px solid rgba(248,246,240,0.08);
-            align-items: start;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .verdad:last-child { border-bottom: none; }
-        .verdad.visible { opacity: 1; transform: translateY(0); }
-
-        .verdad-idx {
-            font-family: 'Fraunces', serif;
-            font-size: 112px;
-            font-weight: 300;
-            font-style: italic;
-            line-height: 1;
-            color: rgba(248,246,240,0.16);
-        }
-        .verdad-title {
-            font-family: 'Fraunces', serif;
-            font-size: clamp(22px, 2.2vw, 32px);
-            font-weight: 400;
-            line-height: 1.2;
-        }
-        .verdad-body {
-            font-size: 14px;
-            line-height: 1.72;
-            color: rgba(248,246,240,0.5);
-        }
-        .verdad-tag {
-            display: inline-block;
-            margin-top: 16px;
-            font-family: 'Fraunces', serif;
-            font-style: italic;
-            font-size: 13px;
-            color: var(--yellow);
-        }
-
-        .verdades-footer {
-            padding: 48px 0 64px;
-            border-top: 1px solid rgba(248,246,240,0.08);
-        }
-        .verdades-quote {
-            font-family: 'Fraunces', serif;
-            font-size: clamp(24px, 3vw, 44px);
-            font-weight: 300;
-            font-style: italic;
-            line-height: 1.2;
-            color: var(--white);
-            max-width: 800px;
-        }
-        .verdades-quote em {
-            color: var(--yellow);
-            font-style: normal;
-        }
-        .verdades-quote-source {
+        .label {
             font-size: 11px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: rgba(248,246,240,0.28);
-            margin-top: 20px;
-        }
-
-        /* ──────────────────────────
-           PROPUESTA
-        ────────────────────────── */
-        .prop-intro {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: end;
-            margin-bottom: 72px;
-        }
-
-        .prop-heading {
-            font-family: 'Fraunces', serif;
-            font-size: clamp(32px, 3.8vw, 54px);
-            font-weight: 300;
-            line-height: 1.1;
-            letter-spacing: -0.01em;
-        }
-        .prop-heading em { font-style: italic; color: var(--red); }
-
-        .prop-desc {
-            font-family: 'Syne', sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 1.72;
-            color: var(--mid);
-            align-self: end;
-        }
-
-        /* fase cards */
-        .fase {
-            display: grid;
-            grid-template-columns: 72px 1fr 280px;
-            gap: 0;
-            border: 1.5px solid var(--black);
-            margin-bottom: 16px;
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-        .fase.visible { opacity: 1; transform: translateY(0); }
-
-        .fase-num-col {
-            background: var(--green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: rgba(248,246,240,0.5);
-            padding: 32px 0;
-        }
-
-        .fase-body {
-            padding: 48px 48px 48px 40px;
-            border-left: 1.5px solid var(--black);
-            border-right: 1.5px solid var(--black);
-        }
-
-        .fase-timing {
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
             font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
             color: var(--mid);
-            margin-bottom: 14px;
+            margin-bottom: 20px;
         }
 
-        .fase-title {
-            font-family: 'Fraunces', serif;
-            font-size: 28px;
-            font-weight: 500;
-            line-height: 1.15;
-            margin-bottom: 18px;
-        }
-
-        .fase-desc {
-            font-family: 'Syne', sans-serif;
-            font-style: normal;
+        h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 30px;
             font-weight: 400;
-            font-size: 14px;
-            line-height: 1.72;
-            color: var(--mid);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
             margin-bottom: 24px;
         }
 
-        .fase-list {
+        p { color: var(--mid); margin-bottom: 12px; }
+        p:last-child { margin-bottom: 0; }
+        p strong { color: var(--ink); font-weight: 500; }
+
+        /* ── AUDIT FINDINGS ── */
+        .findings {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--rule);
+            margin-top: 32px;
+            border: 1px solid var(--rule);
+        }
+        .finding {
+            background: var(--bg);
+            padding: 28px 28px;
+        }
+        .finding-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .finding-label.ok   { color: var(--green); }
+        .finding-label.warn { color: var(--warn); }
+        .finding-value {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.55;
+        }
+
+        /* ── OPCIONES ── */
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+        .option {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .option-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .option-tag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 8px;
+        }
+        .option-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+        }
+        .option-body {
+            padding: 24px 28px;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--rule);
+            font-size: 14px;
+        }
+        .stat-row:last-of-type { border-bottom: none; margin-bottom: 0; }
+        .stat-key { color: var(--mid); }
+        .stat-val { font-weight: 500; color: var(--ink); }
+        .stat-val.price {
+            font-family: 'DM Serif Display', serif;
+            font-size: 18px;
+            letter-spacing: -0.01em;
+        }
+
+        /* ── INCLUDE / EXCLUDE LISTS ── */
+        .list-section {
+            margin-top: 20px;
+        }
+        .list-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+        ul.checklist {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
-        .fase-list li {
-            font-size: 12px;
-            letter-spacing: 0.01em;
-            color: var(--mid);
-            display: flex;
-            gap: 10px;
-        }
-        .fase-list li::before {
-            content: '→';
-            color: var(--green);
-            flex-shrink: 0;
-            font-weight: 600;
-        }
-
-        .fase-price-col {
-            padding: 48px 40px;
-            background: var(--white);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .fase-note {
-            font-family: 'Syne', sans-serif;
-            font-style: normal;
-            font-weight: 400;
+        ul.checklist li {
             font-size: 13px;
-            color: var(--mid);
-            line-height: 1.65;
+            line-height: 1.45;
+            padding-left: 18px;
+            position: relative;
+            color: var(--ink);
         }
+        ul.checklist li::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        ul.checklist.yes li::before { content: '✓'; color: var(--green); font-size: 12px; }
+        ul.checklist.no  li::before { content: '×'; color: var(--warn);  font-size: 14px; top: -1px; }
 
-        .price-block {
-            border-top: 1.5px solid var(--black);
-            padding-top: 20px;
-            margin-top: 24px;
-        }
-        .price-lbl {
-            font-size: 9px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: var(--mid);
-            margin-bottom: 6px;
-        }
-        .price-val {
-            font-family: 'Fraunces', serif;
-            font-size: 46px;
-            font-weight: 300;
-            line-height: 1;
-            color: var(--black);
-        }
-        .price-sub {
-            font-size: 11px;
-            color: var(--mid);
-            margin-top: 8px;
-            line-height: 1.5;
-        }
-        .price-badge {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 4px 10px;
-            font-size: 9px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            font-weight: 700;
-            border: 1.5px solid var(--green);
-            color: var(--green);
-        }
-
-        /* ──────────────────────────
-           COMPARATIVA
-        ────────────────────────── */
-        .comp-wrap {
-            background: var(--green);
-            color: var(--white);
-            border-bottom: 1.5px solid var(--black);
-        }
-        .comp-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 96px 56px;
-        }
-        .comp-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3px;
-            background: rgba(248,246,240,0.12);
-            margin-top: 52px;
-        }
-        .comp-cell {
-            background: var(--green);
-            padding: 48px 44px;
-        }
-        .comp-cell.highlight {
-            background: var(--white);
-            color: var(--black);
-        }
-        .comp-cell.highlight .comp-head { color: var(--green); }
-        .comp-cell.highlight .comp-body { color: var(--mid); }
-        .comp-cell.highlight .comp-tag.accent { color: var(--red); }
-
-        .comp-tag {
-            font-size: 9px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: rgba(248,246,240,0.35);
-            margin-bottom: 20px;
-        }
-        .comp-tag.accent { color: var(--yellow); }
-
-        .comp-head {
-            font-family: 'Fraunces', serif;
-            font-size: 26px;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-        .comp-body {
-            font-size: 14px;
-            line-height: 1.7;
-            color: rgba(248,246,240,0.55);
-        }
-        .comp-strike {
-            text-decoration: line-through;
-            opacity: 0.4;
-        }
-
-        /* ──────────────────────────
-           CLOSING
-        ────────────────────────── */
-        .closing {
-            padding: 120px 0 0;
-        }
-
-        .closing-top {
-            padding-bottom: 80px;
-            border-bottom: 1.5px solid var(--black);
-        }
-
-        .closing-title {
-            font-family: 'Fraunces', serif;
-            font-weight: 300;
-            font-style: italic;
-            font-size: clamp(40px, 5vw, 80px);
-            line-height: 1.0;
-            letter-spacing: -0.02em;
-            max-width: 900px;
-        }
-        .closing-title em {
-            font-style: normal;
-            color: var(--red);
-        }
-
-        .closing-sub {
-            font-family: 'Syne', sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 15px;
-            color: var(--mid);
-            line-height: 1.75;
-            max-width: 560px;
-            margin-top: 32px;
-        }
-
-        .contacts {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border-top: 1.5px solid var(--black);
-        }
-        .contact {
-            padding: 48px 40px;
-            border-right: 1.5px solid var(--black);
-        }
-        .contact:last-child { border-right: none; }
-
-        .contact-role {
-            font-size: 9px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--mid);
-            margin-bottom: 10px;
-        }
-        .contact-name {
-            font-family: 'Fraunces', serif;
-            font-size: 22px;
-            font-weight: 400;
-            color: var(--black);
-            margin-bottom: 6px;
-        }
-        .contact-email {
-            font-size: 12px;
-            color: var(--red);
-            letter-spacing: 0.01em;
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
-            display: inline-block;
-        }
-        .contact-email:hover { border-bottom-color: var(--red); }
-
-        .contact-bio {
-            font-size: 11px;
-            color: var(--mid);
-            line-height: 1.5;
-            margin-top: 10px;
-        }
-
-        /* ──────────────────────────
-           KPIs
-        ────────────────────────── */
-        .kpi-section {
-            border-top: 1.5px solid var(--rule);
-            margin-top: 80px;
-            padding-top: 64px;
-        }
-        .kpi-intro {
-            font-size: 9px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--mid);
-            margin-bottom: 40px;
-        }
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            border: 1.5px solid var(--rule);
-        }
-        .kpi-item {
-            padding: 36px 28px;
-            border-right: 1.5px solid var(--rule);
-        }
-        .kpi-item:last-child { border-right: none; }
-        .kpi-label {
-            font-size: 9px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--mid);
-            margin-bottom: 14px;
-        }
-        .kpi-val {
-            font-family: 'Fraunces', serif;
-            font-weight: 300;
-            font-style: italic;
-            font-size: 38px;
-            line-height: 1;
-            color: var(--black);
-            margin-bottom: 10px;
-        }
-        .kpi-desc {
-            font-size: 12px;
+        .option-note {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--bg);
+            border-radius: 3px;
+            font-size: 13px;
             color: var(--mid);
             line-height: 1.55;
         }
-        .kpi-note {
-            font-size: 11px;
-            color: var(--mid);
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--rule);
-            line-height: 1.6;
-        }
 
-        /* ──────────────────────────
-           FOOTER
-        ────────────────────────── */
-        footer {
-            background: var(--black);
-            padding: 20px 56px;
+        /* ── RECOMENDACIÓN ── */
+        .rec-box {
+            background: var(--ink);
+            color: #F8F7F4;
+            border-radius: 4px;
+            padding: 40px;
+            margin-top: 32px;
+        }
+        .rec-box .label { color: rgba(248,247,244,0.45); margin-bottom: 14px; }
+        .rec-box h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            color: #F8F7F4;
+        }
+        .rec-box p { color: rgba(248,247,244,0.65); font-size: 14px; }
+        .rec-box p strong { color: #F8F7F4; }
+
+        /* ── FEE MENSUAL ── */
+        .fee-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--rule);
+            border: 1px solid var(--rule);
+            margin-top: 32px;
+        }
+        .fee-cell {
+            background: var(--bg);
+            padding: 28px;
+        }
+        .fee-cell-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+        .fee-cell ul {
+            list-style: none;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 5px;
         }
-        .footer-brand {
-            font-size: 10px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: rgba(248,246,240,0.3);
+        .fee-cell ul li {
+            font-size: 13px;
+            color: var(--mid);
+            padding-left: 14px;
+            position: relative;
         }
-        .footer-meta {
-            font-size: 10px;
-            letter-spacing: 0.12em;
-            color: rgba(248,246,240,0.18);
-        }
-
-        /* ──────────────────────────
-           REVEAL
-        ────────────────────────── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* ──────────────────────────
-           RESPONSIVE — TABLET
-        ────────────────────────── */
-        @media (max-width: 960px) {
-            .topbar { padding: 0 24px; height: 48px; }
-            .hero-main { grid-template-columns: 1fr; }
-            .hero-left {
-                padding: 52px 28px 64px;
-                border-right: none;
-                border-bottom: 1.5px solid var(--black);
-                min-height: 60vh;
-            }
-            .hero-right { padding: 52px 28px 64px; }
-            .container { padding: 0 24px; }
-            .section { padding: 72px 0; }
-            .historia-grid { grid-template-columns: 1fr; gap: 52px; }
-            .historia-right { padding-left: 0; border-left: none; border-top: 1.5px solid var(--rule); padding-top: 44px; }
-            .verdad { grid-template-columns: 56px 1fr; gap: 20px; }
-            .verdad-body { grid-column: 2; }
-            .verdades-inner { padding: 0 24px; }
-            .verdades-header { padding: 52px 0 40px; }
-            .verdad { padding: 48px 0; }
-            .comp-inner { padding: 64px 24px; }
-            .comp-grid { grid-template-columns: 1fr; }
-            .prop-intro { grid-template-columns: 1fr; gap: 32px; margin-bottom: 52px; }
-            .fase { grid-template-columns: 1fr; }
-            .fase-num-col { writing-mode: horizontal-tb; transform: none; padding: 18px 24px; font-size: 11px; }
-            .fase-body { border-left: none; border-right: none; border-top: 1.5px solid var(--black); border-bottom: 1.5px solid var(--black); padding: 40px 24px; }
-            .fase-price-col { padding: 36px 24px; }
-            .contacts { grid-template-columns: 1fr; }
-            .contact { border-right: none; border-bottom: 1.5px solid var(--black); padding: 40px 24px; }
-            .contact:last-child { border-bottom: none; }
-            footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+        .fee-cell ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--rule);
         }
 
-        /* ──────────────────────────
-           RESPONSIVE — MOBILE
-        ────────────────────────── */
-        @media (max-width: 600px) {
-            .topbar-meta .topbar-dot { display: none; }
-
-            /* Hero — bigger, bolder on mobile */
-            .hero-left { padding: 40px 20px 56px; min-height: 70vh; }
-            .hero-tag { font-size: 9px; margin-bottom: 36px; }
-            .hero-headline { font-size: clamp(56px, 15vw, 80px); line-height: 0.95; }
-            .hero-footnote { font-size: 15px; margin-top: 40px; }
-            .hero-right { padding: 40px 20px 56px; }
-            .hstat-n { font-size: 72px; }
-            .hstat-n .u { font-size: 32px; }
-            .hstat-l { font-size: 13px; }
-            .hstat { padding: 32px 0; }
-
-            /* Marquee — bigger */
-            .marquee-item { font-size: 12px; padding: 0 40px; }
-
-            /* Sections */
-            .container { padding: 0 20px; }
-            .section { padding: 64px 0; }
-            .eyebrow { font-size: 9px; margin-bottom: 36px; }
-
-            /* Historia */
-            .historia-heading { font-size: clamp(34px, 9vw, 48px); }
-            .historia-body p { font-size: 17px; line-height: 1.72; }
-            .insight-title { font-size: 22px; }
-            .insight-body { font-size: 15px; }
-            .insight-item { padding: 28px 0; }
-
-            /* Verdades */
-            .verdades-inner { padding: 0 20px; }
-            .verdad { grid-template-columns: 1fr; gap: 16px; padding: 48px 0; }
-            .verdad-idx { font-size: 52px; line-height: 1; margin-bottom: -8px; }
-            .verdad-title { font-size: clamp(22px, 6vw, 30px); }
-            .verdad-body { font-size: 15px; line-height: 1.7; }
-            .verdad-tag { font-size: 14px; margin-top: 12px; }
-            .verdades-quote { font-size: clamp(22px, 6vw, 34px); }
-            .verdades-footer { padding: 40px 0 52px; }
-
-            /* Quote section */
-            .quote-inner { grid-template-columns: 1fr; gap: 40px; }
-            .big-q { font-size: 72px; }
-            .quote-text { font-size: clamp(20px, 5.5vw, 28px); }
-            .quote-analysis { border-left: none; border-top: 1.5px solid var(--rule); padding-left: 0; padding-top: 32px; margin-top: 0; }
-            .qa-text { font-size: 15px; }
-
-            /* Propuesta */
-            .prop-heading { font-size: clamp(28px, 8vw, 44px); }
-            .prop-desc { font-size: 16px; }
-            .fase-num-col { padding: 16px 20px; }
-            .fase-body { padding: 36px 20px; }
-            .fase-title { font-size: 26px; }
-            .fase-desc { font-size: 15px; }
-            .fase-list li { font-size: 14px; }
-            .fase-price-col { padding: 32px 20px; }
-            .fase-note { font-size: 14px; }
-            .price-val { font-size: 52px; }
-            .price-sub { font-size: 13px; }
-
-            /* KPIs */
-            .kpi-grid { grid-template-columns: 1fr 1fr; }
-            .kpi-item:nth-child(2) { border-right: none; }
-            .kpi-item:nth-child(3) { border-top: 1.5px solid var(--rule); }
-            .kpi-item:nth-child(4) { border-top: 1.5px solid var(--rule); border-right: none; }
-
-            /* Comparativa */
-            .comp-inner { padding: 56px 20px; }
-            .comp-head { font-size: 24px; }
-            .comp-body { font-size: 15px; }
-            .comp-cell { padding: 40px 28px; }
-
-            /* Closing */
-            .closing { padding: 80px 0 0; }
-            .closing-top { padding-bottom: 64px; }
-            .closing-title { font-size: clamp(36px, 10vw, 56px); }
-            .closing-sub { font-size: 16px; }
-            .contact { padding: 40px 20px; }
-            .contact-name { font-size: 24px; }
-            .contact-email { font-size: 14px; }
-
-            /* Footer */
-            footer { padding: 20px; }
+        /* ── RESPONSIVE ── */
+        @media (max-width: 700px) {
+            .header-inner { flex-direction: column; gap: 8px; }
+            .header-meta { text-align: left; }
+            .page { padding: 0 20px 60px; }
+            .findings { grid-template-columns: 1fr; }
+            .options { grid-template-columns: 1fr; }
+            .fee-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
 
-<!-- ══════ NAV ══════ -->
-<header class="topbar">
-    <span class="topbar-brand">VCS × OdontoRed</span>
-    <span class="topbar-meta">
-        <span class="topbar-dot"></span>Propuesta confidencial · Junio 2026
-    </span>
-</header>
-
-<!-- ══════ HERO ══════ -->
-<section class="hero">
-    <div class="hero-main">
-        <div class="hero-left">
-            <div>
-                <span class="hero-tag">Propuesta Estratégica · OdontoRed / OdontoMóvil · Chile</span>
-                <h1 class="hero-headline">
-                    Diez años<br>
-                    salvando<br>
-                    sonrisas<br>
-                    ajenas.<br>
-                    <span class="line-accent">Ya era hora.</span>
-                </h1>
-            </div>
-        </div>
-
-        <div class="hero-right">
-            <p class="hero-right-label">Los números que importan</p>
-
-            <div class="hero-stats">
-                <div class="hstat">
-                    <div class="hstat-n">10<span class="u">+</span></div>
-                    <div class="hstat-l">Años sin publicidad. Que quede claro lo que viene.</div>
-                </div>
-                <div class="hstat">
-                    <div class="hstat-n">7<span class="u">×</span></div>
-                    <div class="hstat-l">ROAS actual de OdontoRed en Google Ads — funciona bien cuando los encuentran</div>
-                </div>
-                <div class="hstat">
-                    <div class="hstat-n" style="color:var(--yellow)">0</div>
-                    <div class="hstat-l">Conocimiento de marca en el público general. Cero. Ni pío.</div>
-                </div>
-            </div>
-
-            <p class="hero-right-footer">Para: Paula Pinto &amp; Ornella Tapia</p>
-        </div>
-    </div>
-</section>
-
-<!-- ══════ MARQUEE ══════ -->
-<div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee-track">
-        <span class="marquee-item">10 años de trayectoria</span>
-        <span class="marquee-item">Calidad que no se ve</span>
-        <span class="marquee-item">Ética con precio justo</span>
-        <span class="marquee-item">OdontoMóvil</span>
-        <span class="marquee-item">Seguro complementario propio</span>
-        <span class="marquee-item">Clase media emergente</span>
-        <span class="marquee-item">ROAS 7×</span>
-        <span class="marquee-item">Una historia sin contar</span>
-        <span class="marquee-item">10 años de trayectoria</span>
-        <span class="marquee-item">Calidad que no se ve</span>
-        <span class="marquee-item">Ética con precio justo</span>
-        <span class="marquee-item">OdontoMóvil</span>
-        <span class="marquee-item">Seguro complementario propio</span>
-        <span class="marquee-item">Clase media emergente</span>
-        <span class="marquee-item">ROAS 7×</span>
-        <span class="marquee-item">Una historia sin contar</span>
-    </div>
-</div>
-
-<!-- ══════ HISTORIA ══════ -->
-<section class="section">
-    <div class="container">
-        <p class="eyebrow">Capítulo I — La historia hasta ahora</p>
-
-        <div class="historia-grid">
-            <div>
-                <h2 class="historia-heading reveal">
-                    Había una vez una clínica dental<br>
-                    que hacía las cosas<br>
-                    <em>bien de verdad.</em><br>
-                    Nadie lo sabía.
-                </h2>
-                <div class="historia-body reveal" style="transition-delay:.1s">
-                    <p>OdontoRed lleva más de diez años haciendo algo que suena simple pero es rarísimo en salud dental: ser honestos. Precios justos, profesionales calificados, acceso real para familias que históricamente no tenían ese acceso. Sin letra chica, sin sorpresas.</p>
-                    <p>El problema no es lo que hacen. Es que nadie sabe que lo hacen.</p>
-                    <p>Encima, están en medio de un cambio de negocio — del modelo de convenios por planilla a un seguro complementario propio y OdontoMóvil como canal de captación. Todo eso sin una marca que aguante ese salto. Eso es lo que esta propuesta resuelve, en ese orden.</p>
-                </div>
-            </div>
-
-            <div class="historia-right reveal" style="transition-delay:.15s">
-                <div class="insight-item">
-                    <div class="insight-n">Hallazgo 01</div>
-                    <div class="insight-title">Tienen la sustancia. No tienen la voz.</div>
-                    <div class="insight-body">El gap entre lo que hacen y lo que muestran es el problema central — y también la mayor oportunidad.</div>
-                </div>
-                <div class="insight-item">
-                    <div class="insight-n">Hallazgo 02</div>
-                    <div class="insight-title">Quieren ser cálidos y seguros a la vez. Tienen razón.</div>
-                    <div class="insight-body">Cálidos y serios a la vez. Es lo que piden. Y se puede diseñar exactamente así.</div>
-                </div>
-                <div class="insight-item">
-                    <div class="insight-n">Hallazgo 03</div>
-                    <div class="insight-title">El negocio cambia. La marca no puede quedarse atrás.</div>
-                    <div class="insight-body">Nuevo seguro propio. OdontoMóvil. +40% ocupación en RM. No es rediseño — es ponerse al día con lo que ya son.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ══════ VERDADES (DARK) ══════ -->
-<div class="verdades-wrap">
-    <div class="verdades-inner">
-        <div class="verdades-header">
-            <span class="verdades-header-title">Capítulo II</span>
-            <span class="verdades-header-tag">— Tres verdades incómodas</span>
-        </div>
-
-        <div class="verdad">
-            <div class="verdad-idx">I</div>
-            <div class="verdad-title">Tienen todo para ser la clínica más querida de Chile. Nadie lo sabe.</div>
-            <div>
-                <div class="verdad-body">Una misión social genuina, una década de evidencia, precios justos y profesionales calificados. Eso no lo tiene cualquiera. Pero sin una marca que lo cuente, la percepción pública dice otra cosa: "clínica de precio bajo". El gap entre lo que hacen y lo que parecen es su mayor riesgo.</div>
-                <span class="verdad-tag">Ya tienen el contenido. Solo falta alguien que lo cuente.</span>
-            </div>
-        </div>
-
-        <div class="verdad" style="transition-delay:.1s">
-            <div class="verdad-idx">II</div>
-            <div class="verdad-title">La agencia anterior hacía lo que podía. Claramente no era suficiente.</div>
-            <div>
-                <div class="verdad-body">RRSS deficientes. Sin estrategia visible. Una marca que no refleja ni la mitad de lo que OdontoRed entrega. Cambiar de agencia no es capricho — es una decisión estratégica. Y están en el momento exacto: en medio de un pivote de negocio que necesita una marca nueva de todas formas.</div>
-                <span class="verdad-tag">Buen momento para hacer las cosas bien desde el inicio.</span>
-            </div>
-        </div>
-
-        <div class="verdad" style="transition-delay:.2s">
-            <div class="verdad-idx">III</div>
-            <div class="verdad-title">No quieren ser el retail dental. Y tienen razón en no quererlo.</div>
-            <div>
-                <div class="verdad-body">Sus palabras exactas: "Queremos seguir educando que un buen profesional, buenos materiales, tiene un precio — y ser éticos tiene un valor." Eso no es una queja sobre los competidores. Es una declaración de posicionamiento. Solo falta que la marca lo diga igual de claro.</div>
-                <span class="verdad-tag">Humana pero impecable. No es contradicción — es el brief.</span>
-            </div>
-        </div>
-
-        <div class="verdades-footer">
-            <p class="verdades-quote">
-                "Queremos entregar acceso de calidad a las personas que no han tenido acceso a salud dental ética con valores justos."<br>
-                <em>Ya lo hacen. Solo falta contarlo.</em>
-            </p>
-            <p class="verdades-quote-source">— Paula Pinto · Brief respondido, Junio 2026</p>
+<div class="header">
+    <div class="header-inner">
+        <div class="header-title">Web OdontoRed — Opciones</div>
+        <div class="header-meta">
+            Para: Diego y Rodrigo<br>
+            Julio 2026 · Uso interno
         </div>
     </div>
 </div>
 
-<!-- ══════ PROPUESTA ══════ -->
-<section class="section">
-    <div class="container">
-        <p class="eyebrow">Capítulo III — La propuesta en tres actos</p>
+<div class="page">
 
-        <div class="prop-intro">
-            <h2 class="prop-heading reveal">
-                No proponemos<br>
-                todo de golpe.<br>
-                <em>Lo correcto<br>en el orden correcto.</em>
-            </h2>
-            <p class="prop-desc reveal" style="transition-delay:.1s">
-                Tres fases diseñadas para moverse en paralelo donde tiene sentido y en secuencia donde es necesario. El objetivo: pasar de ser invisible a ser la clínica que la gente recomienda.
-            </p>
-        </div>
+    <!-- SITUACIÓN ACTUAL -->
+    <div class="block">
+        <div class="label">01 — Situación actual</div>
+        <h2>Lo que hay hoy en odontored.cl</h2>
+        <p>WordPress con RevSlider, Yoast SEO y Dentalink integrado vía iframe. 60 páginas indexadas, la mayoría sin estrategia de contenido. Antes de proponer cualquier opción, esto es lo que encontramos:</p>
 
-        <!-- FASE 01 -->
-        <div class="fase">
-            <div class="fase-num-col">Acto I</div>
-            <div class="fase-body">
-                <div class="fase-timing">Semanas 1 – 6</div>
-                <div class="fase-title">Rebranding Estratégico</div>
-                <p class="fase-desc">Primero construimos los cimientos. Posicionamiento claro, narrativa de marca auténtica, sistema visual que funcione en sucursal, web, RRSS y OdontoMóvil. Todo a la vez — porque la identidad es un sistema, no una pieza suelta.</p>
-                <ul class="fase-list">
-                    <li>Diagnóstico estratégico + benchmark competitivo</li>
-                    <li>Posicionamiento y narrativa de marca</li>
-                    <li>Sistema visual completo: logo, colores, tipografía</li>
-                    <li>Arquitectura de marca: OdontoRed / OdontoMóvil / Seguro Complementario</li>
-                    <li>Brand guidelines para uso interno y externo</li>
-                    <li>Tono de voz y mensajes clave por segmento</li>
-                </ul>
+        <div class="findings">
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>/prueba-banner-odontored/</strong> — página de prueba en producción, indexada en Google.</div>
             </div>
-            <div class="fase-price-col">
-                <p class="fase-note">Seis semanas de trabajo concentrado. Dos rondas de revisión. Sistema completo listo para aplicar en todos los puntos de contacto.</p>
-                <div class="price-block">
-                    <div class="price-lbl">Inversión</div>
-                    <div class="price-val">$3.2M</div>
-                    <div class="price-sub">+ IVA · 2 cuotas<br>50% inicio / 50% entrega</div>
-                </div>
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>3 URLs de promociones duplicadas</strong> compitiendo por el mismo keyword. SEO se cannibalizan entre sí.</div>
             </div>
-        </div>
-
-        <!-- FASE 02 -->
-        <div class="fase">
-            <div class="fase-num-col">Acto II</div>
-            <div class="fase-body">
-                <div class="fase-timing">Semanas 4 – 10</div>
-                <div class="fase-title">Web + Ecosistema Digital</div>
-                <p class="fase-desc">Un sitio que primero posiciona en Google y después informa con claridad. Mobile-first, integrado con Dentalink para agendar online, con CMS para que el equipo de OdontoRed lo gestione sin llamarle a nadie a las 11pm.</p>
-                <ul class="fase-list">
-                    <li>Diseño UX/UI desde cero — mobile-first</li>
-                    <li>Desarrollo con CMS integrado</li>
-                    <li>Integración Dentalink API + agendamiento online</li>
-                    <li>SEO técnico y on-page desde el inicio</li>
-                    <li>Google Analytics 4 bien configurado (de verdad)</li>
-                    <li>Sección OdontoMóvil como sub-marca activa</li>
-                </ul>
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>Analytics no detectado en el HTML.</strong> O está mal configurado o no está. Hay que verificar el día 1 del onboarding.</div>
             </div>
-            <div class="fase-price-col">
-                <p class="fase-note">Empieza en la semana 4, cuando la identidad visual ya está definida. Llegamos al lanzamiento con coherencia total entre marca y plataforma. Producción fotográfica a cotizar aparte según necesidades de cada sucursal.</p>
-                <div class="price-block">
-                    <div class="price-lbl">Inversión</div>
-                    <div class="price-val">$2.2M</div>
-                    <div class="price-sub">+ IVA · 2 cuotas<br>50% inicio / 50% lanzamiento</div>
-                </div>
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>OdontoMóvil sin sección propia.</strong> Está enterrado en /programa-dental-empresas/. No existe como marca separada.</div>
             </div>
-        </div>
-
-        <!-- FASE 03 -->
-        <div class="fase">
-            <div class="fase-num-col">Acto III</div>
-            <div class="fase-body">
-                <div class="fase-timing">Desde el mes 2 · Mínimo 6 meses</div>
-                <div class="fase-title">Dirección Mensual de Marca</div>
-                <p class="fase-desc">Reemplazamos a la agencia anterior. No como proveedor táctico — como el equipo creativo de OdontoRed. Dirección estratégica, RRSS, supervisión de pauta y evolución de marca mes a mes.</p>
-                <ul class="fase-list">
-                    <li>Dirección estratégica y creativa mensual</li>
-                    <li>Gestión y diseño RRSS (OdontoRed + OdontoMóvil)</li>
-                    <li>Supervisión pauta Google + Meta (inversión aparte)</li>
-                    <li>Diseño piezas digitales mensuales</li>
-                    <li>Activación base de datos histórica: reactivación de pacientes con Dentalink IA</li>
-                    <li>Reporte mensual con KPIs acordados</li>
-                </ul>
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>Dos homes indexadas:</strong> / y /inicio/ — Google no sabe cuál priorizar.</div>
             </div>
-            <div class="fase-price-col">
-                <p class="fase-note">El equipo actual de OdontoRed ya invierte $800K/mes en gestión de marca. VCS entra al mismo rango de costo con dirección estratégica real — no ejecución táctica.</p>
-                <div class="price-block">
-                    <div class="price-lbl">Fee mensual</div>
-                    <div class="price-val">$1.3M</div>
-                    <div class="price-sub">+ IVA · Pauta aparte</div>
-                    <div class="price-badge">Largo plazo</div>
-                </div>
-            </div>
-        </div>
-        <!-- KPIs -->
-        <div class="kpi-section reveal">
-            <p class="kpi-intro">KPIs propuestos — a confirmar en conjunto</p>
-            <div class="kpi-grid">
-                <div class="kpi-item">
-                    <div class="kpi-label">Ocupación clínicas RM</div>
-                    <div class="kpi-val">+40%</div>
-                    <div class="kpi-desc">Meta declarada a 18 meses. Medimos desde el mes 1 con GA4 + Dentalink.</div>
-                </div>
-                <div class="kpi-item">
-                    <div class="kpi-label">Reconocimiento de marca</div>
-                    <div class="kpi-val">0→?</div>
-                    <div class="kpi-desc">Benchmark a definir. Hoy en cero. Cualquier avance es ganancia medible.</div>
-                </div>
-                <div class="kpi-item">
-                    <div class="kpi-label">Conversión web → hora</div>
-                    <div class="kpi-val">%CR</div>
-                    <div class="kpi-desc">Visita a agendamiento online. Integración Dentalink API desde día uno.</div>
-                </div>
-                <div class="kpi-item">
-                    <div class="kpi-label">Pacientes reactivados</div>
-                    <div class="kpi-val">base</div>
-                    <div class="kpi-desc">10+ años de historial sin explotar. Meta conservadora: 5% de reactivación el primer año.</div>
-                </div>
-            </div>
-            <p class="kpi-note">Estos son los puntos de partida. Los refinamos en la primera reunión y los convertimos en compromisos mutuos — no en promesas unilaterales.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ══════ COMPARATIVA ══════ -->
-<div class="comp-wrap">
-    <div class="comp-inner">
-        <p class="eyebrow" style="color:rgba(248,246,240,0.35);">Lo que cambia</p>
-        <div class="comp-grid">
-            <div class="comp-cell">
-                <div class="comp-tag">Hoy</div>
-                <div class="comp-head">Accesibles en precio.<br>Invisibles en reputación.</div>
-                <div class="comp-body">Sin marca que lo cuente, el precio es lo único que queda. Y eso los mete en una pelea que no quieren ganar.</div>
-            </div>
-            <div class="comp-cell highlight">
-                <div class="comp-tag accent">Con VCS</div>
-                <div class="comp-head">Accesibles en precio.<br>Imbatibles en confianza.</div>
-                <div class="comp-body">La misión social es el diferencial, no el precio. Diez años de evidencia, bien contados, cierran más que cualquier promoción.</div>
+            <div class="finding">
+                <div class="finding-label ok">Funciona</div>
+                <div class="finding-value"><strong>Dentalink ya integrado.</strong> El agendamiento existe vía agenda.softwaredentalink.com — no hay que partir de cero.</div>
             </div>
         </div>
     </div>
+
+    <!-- OPCIONES -->
+    <div class="block">
+        <div class="label">02 — Las opciones</div>
+        <h2>Dos caminos, distinto costo y alcance</h2>
+        <p>Lo que proponemos depende de cuánto queremos comprometer en tiempo y presupuesto ahora versus en 18 meses.</p>
+
+        <div class="options">
+
+            <!-- OPCIÓN 1 -->
+            <div class="option">
+                <div class="option-header">
+                    <div class="option-tag">Opción 1</div>
+                    <div class="option-name">WordPress renovado</div>
+                </div>
+                <div class="option-body">
+                    <div class="stat-row">
+                        <span class="stat-key">Precio</span>
+                        <span class="stat-val price">$1.4M + IVA</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Tiempo</span>
+                        <span class="stat-val">5–6 semanas</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Hosting</span>
+                        <span class="stat-val">~$25 USD/mes (OdontoRed paga)</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">CMS</span>
+                        <span class="stat-val">WordPress — lo conocen</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Dentalink</span>
+                        <span class="stat-val">Iframe — funciona</span>
+                    </div>
+
+                    <div class="list-section">
+                        <div class="list-title">Incluye</div>
+                        <ul class="checklist yes">
+                            <li>Tema nuevo desde cero — mismo WordPress, diferente todo lo demás</li>
+                            <li>Limpieza de páginas duplicadas y basura indexada</li>
+                            <li>Estructura SEO corregida (URLs, metas, H1s)</li>
+                            <li>OdontoMóvil con sección propia</li>
+                            <li>Google Analytics 4 bien configurado</li>
+                            <li>Mobile-first en el diseño nuevo</li>
+                            <li>RevSlider — Paula puede cambiar banners sola</li>
+                        </ul>
+
+                        <div class="list-title">No incluye</div>
+                        <ul class="checklist no">
+                            <li>Integración real con Dentalink API</li>
+                            <li>CMS a medida — usan el WordPress estándar</li>
+                            <li>Seguro complementario (no hay página aún)</li>
+                            <li>Producción fotográfica</li>
+                        </ul>
+                    </div>
+
+                    <div class="option-note">
+                        El límite real: WordPress con RevSlider tiene techo de performance. Cada actualización de plugin puede romper algo. Es construir sobre la base de la agencia anterior.
+                    </div>
+                </div>
+            </div>
+
+            <!-- OPCIÓN 2 -->
+            <div class="option">
+                <div class="option-header">
+                    <div class="option-tag">Opción 2</div>
+                    <div class="option-name">Rebuild completo</div>
+                </div>
+                <div class="option-body">
+                    <div class="stat-row">
+                        <span class="stat-key">Precio</span>
+                        <span class="stat-val price">$2.2M + IVA</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Tiempo</span>
+                        <span class="stat-val">8–10 semanas</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Hosting</span>
+                        <span class="stat-val">$0 — Vercel free tier</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">CMS</span>
+                        <span class="stat-val">Sanity — panel a medida</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Dentalink</span>
+                        <span class="stat-val">API integrada de verdad</span>
+                    </div>
+
+                    <div class="list-section">
+                        <div class="list-title">Incluye</div>
+                        <ul class="checklist yes">
+                            <li>Sitio nuevo en Next.js — rápido por defecto</li>
+                            <li>SEO técnico limpio desde el día 1</li>
+                            <li>Sanity CMS: Paula sube banners y promociones sin tocar código</li>
+                            <li>Panel CMS limitado — solo ven lo que necesitan</li>
+                            <li>Integración Dentalink API (agendamiento nativo)</li>
+                            <li>OdontoMóvil como sub-marca con sección propia</li>
+                            <li>Página de seguro complementario lista para cuando la necesiten</li>
+                            <li>Sección B2B para convenios empresariales</li>
+                            <li>Google Analytics 4 bien configurado</li>
+                        </ul>
+
+                        <div class="list-title">No incluye</div>
+                        <ul class="checklist no">
+                            <li>Producción fotográfica (se cotiza aparte)</li>
+                            <li>Copy de cada página (lo hace Rodrigo)</li>
+                            <li>Pauta digital (va en el fee mensual)</li>
+                        </ul>
+                    </div>
+
+                    <div class="option-note">
+                        El límite real: más caro y más tiempo. Sanity tiene una curva de aprendizaje mínima para Paula — 1 o 2 horas al inicio.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RECOMENDACIÓN -->
+    <div class="block">
+        <div class="label">03 — Posición</div>
+        <h2>Cuál propongo y por qué</h2>
+
+        <div class="rec-box">
+            <div class="label">Recomendación</div>
+            <h3>Opción 2. No tiene sentido construir sobre una base con techo.</h3>
+            <p>OdontoRed va a escalar sucursales, lanzar un seguro propio y crecer en B2C. La Opción 1 resuelve el problema de hoy y crea uno nuevo en 18 meses. <strong>Si le estamos cobrando $2.2M más un fee mensual, tiene que ser algo que aguante lo que viene.</strong></p>
+            <br>
+            <p>La única razón para ir con Opción 1 es si Paula necesita algo visible urgente — antes de que termine el rebranding. En ese caso hacemos la Opción 1 como puente de 2 meses, y la Opción 2 después. Pero eso sube el costo total y complica los plazos.</p>
+        </div>
+    </div>
+
+    <!-- FEE MENSUAL -->
+    <div class="block">
+        <div class="label">04 — Fee mensual</div>
+        <h2>Qué cubre el $1.3M/mes en la parte web</h2>
+        <p>La gestión de contenido del sitio va incluida en el fee. Justifica parte del precio y saca a Paula de depender de alguien externo cada vez que quiere cambiar una imagen.</p>
+
+        <div class="fee-grid">
+            <div class="fee-cell">
+                <div class="fee-cell-title">Incluido en el fee</div>
+                <ul>
+                    <li>Cambios de banners y promociones</li>
+                    <li>Actualización de contenido (horarios, sucursales, precios)</li>
+                    <li>Monitoreo de performance y GA4</li>
+                    <li>Correcciones técnicas menores</li>
+                    <li>Reporte mensual de tráfico y conversión</li>
+                </ul>
+            </div>
+            <div class="fee-cell">
+                <div class="fee-cell-title">No incluido — se cotiza aparte</div>
+                <ul>
+                    <li>Páginas nuevas o secciones grandes</li>
+                    <li>Integraciones nuevas</li>
+                    <li>Producción fotográfica</li>
+                    <li>Pauta digital (presupuesto separado de OdontoRed)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<!-- ══════ CLOSING ══════ -->
-<section class="closing">
-    <div class="container">
-        <div class="closing-top reveal">
-            <h2 class="closing-title">
-                Lo que no podemos<br>
-                seguir haciendo es dejar<br>
-                que la clínica más honesta<br>
-                de Chile viva <em>en el anonimato.</em>
-            </h2>
-            <p class="closing-sub">El primer paso es una llamada de 30 minutos. Sin PowerPoint extra, sin preguntas de relleno — solo definir por dónde arrancamos. La agenda está abierta esta semana.</p>
-        </div>
-
-        <div class="contacts">
-            <div class="contact">
-                <div class="contact-role">Estrategia Web</div>
-                <div class="contact-name">Nicolás Jofré</div>
-                <a class="contact-email" href="mailto:nicolas@njofre.com">nicolas@njofre.com</a>
-                <p class="contact-bio">UI/UX, posicionamiento digital y arquitectura de contenidos. Ha trabajado en web y branding para marcas chilenas en salud, retail y servicios.</p>
-            </div>
-            <div class="contact">
-                <div class="contact-role">Dirección Creativa</div>
-                <div class="contact-name">Rodrigo Ulloa</div>
-                <a class="contact-email" href="mailto:rodrigo.ulloa@tocha.cl">rodrigo.ulloa@tocha.cl</a>
-                <p class="contact-bio">Dirección de arte, identidad visual y comunicación de marca. Socio fundador de Tocha, estudio creativo con trayectoria en identidades de alto impacto.</p>
-            </div>
-            <div class="contact">
-                <div class="contact-role">Dirección General</div>
-                <div class="contact-name">Diego Navarrete</div>
-                <a class="contact-email" href="mailto:diego@vcs.cl">diego@vcs.cl</a>
-                <p class="contact-bio">Estrategia de negocios, desarrollo de marca y crecimiento. Experiencia en construcción de equipos creativos y gestión de relaciones con clientes de largo plazo.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <span class="footer-brand">VCS — Estrategia &amp; Comunicación · 2026</span>
-    <span class="footer-meta">Propuesta confidencial · OdontoRed / OdontoMóvil · Chile · Vigencia: 31 julio 2026</span>
-</footer>
-
-<script>
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('visible');
-                io.unobserve(e.target);
-            }
-        });
-    }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal, .verdad, .fase').forEach(el => io.observe(el));
-</script>
 </body>
 </html>
