@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web OdontoRed — Opciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:      #F8F7F4;
+            --white:   #FFFFFF;
+            --ink:     #111110;
+            --mid:     #6B6B68;
+            --rule:    rgba(17,17,16,0.1);
+            --accent:  #1D4ED8;
+            --green:   #15803D;
+            --warn:    #B45309;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            border-bottom: 1px solid var(--rule);
+            padding: 32px 0;
+        }
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .header-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+        .header-meta {
+            font-size: 12px;
+            color: var(--mid);
+            text-align: right;
+            line-height: 1.7;
+        }
+
+        /* ── LAYOUT ── */
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        .block {
+            padding: 56px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+        .block:last-child { border-bottom: none; }
+
+        .label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 30px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        p { color: var(--mid); margin-bottom: 12px; }
+        p:last-child { margin-bottom: 0; }
+        p strong { color: var(--ink); font-weight: 500; }
+
+        /* ── AUDIT FINDINGS ── */
+        .findings {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--rule);
+            margin-top: 32px;
+            border: 1px solid var(--rule);
+        }
+        .finding {
+            background: var(--bg);
+            padding: 28px 28px;
+        }
+        .finding-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .finding-label.ok   { color: var(--green); }
+        .finding-label.warn { color: var(--warn); }
+        .finding-value {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.55;
+        }
+
+        /* ── OPCIONES ── */
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+        .option {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .option-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .option-tag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 8px;
+        }
+        .option-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+        }
+        .option-body {
+            padding: 24px 28px;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--rule);
+            font-size: 14px;
+        }
+        .stat-row:last-of-type { border-bottom: none; margin-bottom: 0; }
+        .stat-key { color: var(--mid); }
+        .stat-val { font-weight: 500; color: var(--ink); }
+        .stat-val.price {
+            font-family: 'DM Serif Display', serif;
+            font-size: 18px;
+            letter-spacing: -0.01em;
+        }
+
+        /* ── INCLUDE / EXCLUDE LISTS ── */
+        .list-section {
+            margin-top: 20px;
+        }
+        .list-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+        ul.checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        ul.checklist li {
+            font-size: 13px;
+            line-height: 1.45;
+            padding-left: 18px;
+            position: relative;
+            color: var(--ink);
+        }
+        ul.checklist li::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        ul.checklist.yes li::before { content: '✓'; color: var(--green); font-size: 12px; }
+        ul.checklist.no  li::before { content: '×'; color: var(--warn);  font-size: 14px; top: -1px; }
+
+        .option-note {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--bg);
+            border-radius: 3px;
+            font-size: 13px;
+            color: var(--mid);
+            line-height: 1.55;
+        }
+
+        /* ── RECOMENDACIÓN ── */
+        .rec-box {
+            background: var(--ink);
+            color: #F8F7F4;
+            border-radius: 4px;
+            padding: 40px;
+            margin-top: 32px;
+        }
+        .rec-box .label { color: rgba(248,247,244,0.45); margin-bottom: 14px; }
+        .rec-box h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            color: #F8F7F4;
+        }
+        .rec-box p { color: rgba(248,247,244,0.65); font-size: 14px; }
+        .rec-box p strong { color: #F8F7F4; }
+
+        /* ── FEE MENSUAL ── */
+        .fee-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--rule);
+            border: 1px solid var(--rule);
+            margin-top: 32px;
+        }
+        .fee-cell {
+            background: var(--bg);
+            padding: 28px;
+        }
+        .fee-cell-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+        .fee-cell ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .fee-cell ul li {
+            font-size: 13px;
+            color: var(--mid);
+            padding-left: 14px;
+            position: relative;
+        }
+        .fee-cell ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--rule);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 700px) {
+            .header-inner { flex-direction: column; gap: 8px; }
+            .header-meta { text-align: left; }
+            .page { padding: 0 20px 60px; }
+            .findings { grid-template-columns: 1fr; }
+            .options { grid-template-columns: 1fr; }
+            .fee-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-inner">
+        <div class="header-title">Web OdontoRed — Opciones</div>
+        <div class="header-meta">
+            Para: Diego y Rodrigo<br>
+            Julio 2026 · Uso interno
+        </div>
+    </div>
+</div>
+
+<div class="page">
+
+    <!-- SITUACIÓN ACTUAL -->
+    <div class="block">
+        <div class="label">01 — Situación actual</div>
+        <h2>Lo que hay hoy en odontored.cl</h2>
+        <p>WordPress con RevSlider, Yoast SEO y Dentalink integrado vía iframe. 60 páginas indexadas, la mayoría sin estrategia de contenido. Antes de proponer cualquier opción, esto es lo que encontramos:</p>
+
+        <div class="findings">
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>/prueba-banner-odontored/</strong> — página de prueba en producción, indexada en Google.</div>
+            </div>
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>3 URLs de promociones duplicadas</strong> compitiendo por el mismo keyword. SEO se cannibalizan entre sí.</div>
+            </div>
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>Analytics no detectado en el HTML.</strong> O está mal configurado o no está. Hay que verificar el día 1 del onboarding.</div>
+            </div>
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>OdontoMóvil sin sección propia.</strong> Está enterrado en /programa-dental-empresas/. No existe como marca separada.</div>
+            </div>
+            <div class="finding">
+                <div class="finding-label warn">Problema</div>
+                <div class="finding-value"><strong>Dos homes indexadas:</strong> / y /inicio/ — Google no sabe cuál priorizar.</div>
+            </div>
+            <div class="finding">
+                <div class="finding-label ok">Funciona</div>
+                <div class="finding-value"><strong>Dentalink ya integrado.</strong> El agendamiento existe vía agenda.softwaredentalink.com — no hay que partir de cero.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPCIONES -->
+    <div class="block">
+        <div class="label">02 — Las opciones</div>
+        <h2>Dos caminos, distinto costo y alcance</h2>
+        <p>Lo que proponemos depende de cuánto queremos comprometer en tiempo y presupuesto ahora versus en 18 meses.</p>
+
+        <div class="options">
+
+            <!-- OPCIÓN 1 -->
+            <div class="option">
+                <div class="option-header">
+                    <div class="option-tag">Opción 1</div>
+                    <div class="option-name">WordPress renovado</div>
+                </div>
+                <div class="option-body">
+                    <div class="stat-row">
+                        <span class="stat-key">Precio</span>
+                        <span class="stat-val price">$1.4M + IVA</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Tiempo</span>
+                        <span class="stat-val">5–6 semanas</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Hosting</span>
+                        <span class="stat-val">~$25 USD/mes (OdontoRed paga)</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">CMS</span>
+                        <span class="stat-val">WordPress — lo conocen</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Dentalink</span>
+                        <span class="stat-val">Iframe — funciona</span>
+                    </div>
+
+                    <div class="list-section">
+                        <div class="list-title">Incluye</div>
+                        <ul class="checklist yes">
+                            <li>Tema nuevo desde cero — mismo WordPress, diferente todo lo demás</li>
+                            <li>Limpieza de páginas duplicadas y basura indexada</li>
+                            <li>Estructura SEO corregida (URLs, metas, H1s)</li>
+                            <li>OdontoMóvil con sección propia</li>
+                            <li>Google Analytics 4 bien configurado</li>
+                            <li>Mobile-first en el diseño nuevo</li>
+                            <li>RevSlider — Paula puede cambiar banners sola</li>
+                        </ul>
+
+                        <div class="list-title">No incluye</div>
+                        <ul class="checklist no">
+                            <li>Integración real con Dentalink API</li>
+                            <li>CMS a medida — usan el WordPress estándar</li>
+                            <li>Seguro complementario (no hay página aún)</li>
+                            <li>Producción fotográfica</li>
+                        </ul>
+                    </div>
+
+                    <div class="option-note">
+                        El límite real: WordPress con RevSlider tiene techo de performance. Cada actualización de plugin puede romper algo. Es construir sobre la base de la agencia anterior.
+                    </div>
+                </div>
+            </div>
+
+            <!-- OPCIÓN 2 -->
+            <div class="option">
+                <div class="option-header">
+                    <div class="option-tag">Opción 2</div>
+                    <div class="option-name">Rebuild completo</div>
+                </div>
+                <div class="option-body">
+                    <div class="stat-row">
+                        <span class="stat-key">Precio</span>
+                        <span class="stat-val price">$2.2M + IVA</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Tiempo</span>
+                        <span class="stat-val">8–10 semanas</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Hosting</span>
+                        <span class="stat-val">$0 — Vercel free tier</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">CMS</span>
+                        <span class="stat-val">Sanity — panel a medida</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-key">Dentalink</span>
+                        <span class="stat-val">API integrada de verdad</span>
+                    </div>
+
+                    <div class="list-section">
+                        <div class="list-title">Incluye</div>
+                        <ul class="checklist yes">
+                            <li>Sitio nuevo en Next.js — rápido por defecto</li>
+                            <li>SEO técnico limpio desde el día 1</li>
+                            <li>Sanity CMS: Paula sube banners y promociones sin tocar código</li>
+                            <li>Panel CMS limitado — solo ven lo que necesitan</li>
+                            <li>Integración Dentalink API (agendamiento nativo)</li>
+                            <li>OdontoMóvil como sub-marca con sección propia</li>
+                            <li>Página de seguro complementario lista para cuando la necesiten</li>
+                            <li>Sección B2B para convenios empresariales</li>
+                            <li>Google Analytics 4 bien configurado</li>
+                        </ul>
+
+                        <div class="list-title">No incluye</div>
+                        <ul class="checklist no">
+                            <li>Producción fotográfica (se cotiza aparte)</li>
+                            <li>Copy de cada página (lo hace Rodrigo)</li>
+                            <li>Pauta digital (va en el fee mensual)</li>
+                        </ul>
+                    </div>
+
+                    <div class="option-note">
+                        El límite real: más caro y más tiempo. Sanity tiene una curva de aprendizaje mínima para Paula — 1 o 2 horas al inicio.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RECOMENDACIÓN -->
+    <div class="block">
+        <div class="label">03 — Posición</div>
+        <h2>Cuál propongo y por qué</h2>
+
+        <div class="rec-box">
+            <div class="label">Recomendación</div>
+            <h3>Opción 2. No tiene sentido construir sobre una base con techo.</h3>
+            <p>OdontoRed va a escalar sucursales, lanzar un seguro propio y crecer en B2C. La Opción 1 resuelve el problema de hoy y crea uno nuevo en 18 meses. <strong>Si le estamos cobrando $2.2M más un fee mensual, tiene que ser algo que aguante lo que viene.</strong></p>
+            <br>
+            <p>La única razón para ir con Opción 1 es si Paula necesita algo visible urgente — antes de que termine el rebranding. En ese caso hacemos la Opción 1 como puente de 2 meses, y la Opción 2 después. Pero eso sube el costo total y complica los plazos.</p>
+        </div>
+    </div>
+
+    <!-- FEE MENSUAL -->
+    <div class="block">
+        <div class="label">04 — Fee mensual</div>
+        <h2>Qué cubre el $1.3M/mes en la parte web</h2>
+        <p>La gestión de contenido del sitio va incluida en el fee. Justifica parte del precio y saca a Paula de depender de alguien externo cada vez que quiere cambiar una imagen.</p>
+
+        <div class="fee-grid">
+            <div class="fee-cell">
+                <div class="fee-cell-title">Incluido en el fee</div>
+                <ul>
+                    <li>Cambios de banners y promociones</li>
+                    <li>Actualización de contenido (horarios, sucursales, precios)</li>
+                    <li>Monitoreo de performance y GA4</li>
+                    <li>Correcciones técnicas menores</li>
+                    <li>Reporte mensual de tráfico y conversión</li>
+                </ul>
+            </div>
+            <div class="fee-cell">
+                <div class="fee-cell-title">No incluido — se cotiza aparte</div>
+                <ul>
+                    <li>Páginas nuevas o secciones grandes</li>
+                    <li>Integraciones nuevas</li>
+                    <li>Producción fotográfica</li>
+                    <li>Pauta digital (presupuesto separado de OdontoRed)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
